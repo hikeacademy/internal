@@ -24,7 +24,6 @@ def get_contacts(filename):
     and links read from a file specified by filename.
     TODO(gus): make this more flexible.
     """
-    
     names = []
     emails = []
     links = []
@@ -82,7 +81,6 @@ def get_message_info():
 def main():
     sender_email, sender_password = get_credentials() # get email credentials
     names, emails, links = get_contacts('mycontacts.txt') # read contacts
-
     message_template, message_subject = get_message_info()
 
     # set up the SMTP server
@@ -100,16 +98,16 @@ def main():
         # Prints out the message body for our sake
         print(message)
 
-        # # setup the parameters of the message
-        # msg['From'] = sender_email
-        # msg['To'] = email
-        # msg['Subject'] = message_subject
+        # setup the parameters of the message
+        msg['From'] = sender_email
+        msg['To'] = email
+        msg['Subject'] = message_subject
         
-        # # add in the message body
-        # msg.attach(MIMEText(message, 'html'))
+        # add in the message body
+        msg.attach(MIMEText(message, 'html'))
         
-        # # send the message via the server set up earlier.
-        # s.send_message(msg)
+        # send the message via the server set up earlier.
+        s.send_message(msg)
         del msg
         
     # Terminate the SMTP session and close the connection
